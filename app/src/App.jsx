@@ -2,7 +2,10 @@ import AbcIcon from '@mui/icons-material/Abc';
 
 function App() {
   return (
+    <>
     <AbcIcon />
+    <p>ok</p>
+    </>
   );
 }
 
