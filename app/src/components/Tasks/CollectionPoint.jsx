@@ -2,9 +2,6 @@ import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 
 const CollectionPoint = () => {
-  const besosAmount = 0;
-  const duration = "dobry";
-
   const collectionPointTask = {
     besosAmount: 0,
     duration: "dobry",

@@ -5,7 +5,12 @@ import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined
 
 const PutDown = () => {
   const data = [
-    { code: "123", aisle: "A", shelf: "4" },
+    [
+      { taskID: "4", code: "111", aisle: "A", shelf: "5", type: "zanieś" },
+      { taskID: "5", code: "131", aisle: "B", shelf: "6", type: "zanieś" },
+      { taskID: "6", code: "151", aisle: "C", shelf: "7", type: "zanieś" },
+      { taskID: "7", code: "171", aisle: "D", shelf: "8", type: "zanieś" },
+    ],
     {
       besosAmount: 0,
       duration: "dobry",

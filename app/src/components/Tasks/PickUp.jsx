@@ -10,24 +10,17 @@ const PickUp = () => {
   const pickUpItems = {};
 
   const data = [
-    [{ code: "123" }, { code: "345" }, { code: "678" }, { code: "910" }],
+    [
+      { taskID: "1", code: "123", aisle: "A", shelf: "1", type: "odbierz" },
+      { taskID: "2", code: "345", aisle: "B", shelf: "2", type: "odbierz" },
+      { taskID: "3", code: "678", aisle: "C", shelf: "3", type: "odbierz" },
+      { taskID: "4", code: "910", aisle: "D", shelf: "4", type: "odbierz" },
+    ],
     {
       besosAmount: 0,
       duration: "dobry",
     },
   ];
-  //   const itemsList = [
-  //     [
-  //       { code: "123", aisle: "A", shelf: "4" },
-  //       { code: "345", aisle: "B", shelf: "3" },
-  //       { code: "678", aisle: "C", shelf: "2" },
-  //       { code: "910", aisle: "D", shelf: "1" },
-  //     ],
-  //     {
-  //       besosAmount: 0,
-  //       duration: "dobry",
-  //     },
-  //   ];
 
   return (
     <article className="h-auto w-[100%] mt-[20px] pl-[10px] pt-[20px] pb-[20px] flex flex-col border-l-8 border-blue_500 bg-cards_background rounded-md">
