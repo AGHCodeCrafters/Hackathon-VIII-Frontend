@@ -15,3 +15,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.grad {
+  background: rgb(33,198,253);
+background: linear-gradient(90deg, rgba(33,198,253,1) 11%, rgba(57,172,254,1) 46%, rgba(33,97,252,1) 78%);
+}

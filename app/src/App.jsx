@@ -3,8 +3,8 @@ import AbcIcon from '@mui/icons-material/Abc';
 function App() {
   return (
     <>
-    <AbcIcon />
-    <p>ok</p>
+      <AbcIcon />
+      <button className='w-[200px] h-[50px] grad rounded-md'>ok</button>
     </>
   );
 }
