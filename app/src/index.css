@@ -40,8 +40,6 @@ code {
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#2161FC", endColorstr="#21C6FD", GradientType=1 );
 }
 
-.box-shadow {
-  -webkit-box-shadow: 22px 12px 25px -9px rgba(107, 120, 145, 1);
-  -moz-box-shadow: 22px 12px 25px -9px rgba(107, 120, 145, 1);
-  box-shadow: 22px 12px 25px -9px rgba(107, 120, 145, 1);
+.custom-box-shadow {
+  box-shadow: 3px 2px 4px rgba(0, 0, 0, 0.1), -4px -4px 4px rgba(0, 0, 0, 0.1);
 }
