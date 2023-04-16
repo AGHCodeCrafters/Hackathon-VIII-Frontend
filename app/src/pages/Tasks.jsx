@@ -17,7 +17,7 @@ const Tasks = () => {
     status,
   } = useHttp(getTasks);
 
-  // const { sendRequest: sendRequestForPatch } = useHttp(patchTask);
+  const { sendRequest: sendRequestForPatch } = useHttp(patchTask);
 
   const {
     tasksData,
@@ -25,6 +25,8 @@ const Tasks = () => {
     tasksIteration,
     onTaskIteration,
     currentTaskIndex,
+    completedTasks,
+    onCompletedTasks,
     onTaskIndex,
     onFetchTasks,
     onActiveTaskType,
@@ -36,64 +38,63 @@ const Tasks = () => {
 
   useEffect(() => {
     sendRequestForFetch();
-    console.log(loadedTasks);
   }, []);
 
   const tasksFlowHandler = () => {
-    if (currentTaskIndex > tasksData.length) {
-      navigate("/summary");
-      return;
-    }
-    if (activeTaskType === "punktOdbioru") {
-      onTaskIteration();
-      onActiveTaskType("odbierz");
-      let truckItems = [];
-      truckItems = tasksData.filter((obj) => obj.type === "odbierz");
-      setCurrentTasks(truckItems);
-    }
-
-    if (tasksIteration % 2 === 0 && activeTaskType !== "punktOdbioru") {
-      onTaskIteration();
-      onActiveTaskType("idźDo");
-      if (currentTaskIndex != tasksData.length - 1) {
-        onTaskIndex((prev) => prev + 1);
-      } else {
-        onActiveTaskType("punktOdbioru");
-        onFetchTasks([]);
+    onFetchTasks(loadedTasks);
+    if (tasksData !== null) {
+      if (currentTaskIndex > tasksData.length) {
+        navigate("/summary");
+        return;
       }
-      // console.log(
-      //   currentTaskIndex >= 0 ? tasksData[currentTaskIndex].taskID : ""
-      // );
-      // if (currentTaskIndex >= 0) {
-      //   sendRequestForPatch(tasksData[currentTaskIndex].taskID);
-      // }
-    }
+      if (activeTaskType === "punktOdbioru") {
+        onTaskIteration();
+        onActiveTaskType("get");
+        let truckItems = [];
+        truckItems = tasksData.filter((obj) => obj.type === "get");
+        setCurrentTasks(truckItems);
+      }
 
-    if (activeTaskType === "idźDo") {
-      onTaskIteration();
-      onActiveTaskType("odłóż");
+      if (tasksIteration % 2 === 0 && activeTaskType !== "punktOdbioru") {
+        onTaskIteration();
+        onActiveTaskType("idźDo");
+        if (currentTaskIndex != tasksData.length - 1) {
+          onTaskIndex((prev) => prev + 1);
+          if (currentTaskIndex > 1) {
+            console.log(currentTaskIndex);
+            //sendRequestForPatch(tasksData[currentTaskIndex].id);
+            onCompletedTasks();
+          }
+        } else {
+          onActiveTaskType("punktOdbioru");
+          onFetchTasks([]);
+        }
+      }
+
+      if (activeTaskType === "idźDo") {
+        onTaskIteration();
+        onActiveTaskType("put");
+      }
     }
   };
-
-  console.log(
-    `active type ${activeTaskType} task iteration ${tasksIteration} currentIndex ${currentTaskIndex}`
-  );
 
   return (
     <main className="h-[90vh] bg-background flex flex-col px-[20px] overflow-y-auto overflow-x scroll">
       <h2 className="text-[30px] text-gray_300 font-bold">Twoje zadanie:</h2>
-      {activeTaskType === "punktOdbioru" ? (
-        <CollectionPoint />
-      ) : activeTaskType === "odbierz" ? (
-        <PickUp
-          data={tasksData[currentTaskIndex]}
-          entryData={currentTasks === undefined ? [] : currentTasks}
-        />
-      ) : activeTaskType === "odłóż" ? (
-        <PutDown />
-      ) : (
-        <ComeTo />
-      )}
+      {status == (null || "pending") && <p>Ładowanie</p>}
+      {status == "completed" &&
+        (activeTaskType === "punktOdbioru" ? (
+          <CollectionPoint />
+        ) : activeTaskType === "get" ? (
+          <PickUp
+            entryData={currentTasks === undefined ? [] : currentTasks}
+            data={tasksData[currentTaskIndex]}
+          />
+        ) : activeTaskType === "put" ? (
+          <PutDown />
+        ) : (
+          <ComeTo />
+        ))}
 
       <button
         onClick={tasksFlowHandler}

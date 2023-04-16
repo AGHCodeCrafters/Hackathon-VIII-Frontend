@@ -1,20 +1,17 @@
 const API_KEY = "http://192.168.97.27:8000";
 
 export const getTasks = async () => {
-  const response = await fetch(`${API_KEY}/tasks`);
+  const response = await fetch(`${API_KEY}/tasks/employee/1`);
   const data = await response.json();
-
-  console.log(data);
 
   if (!response.ok) {
     throw new Error(data.message || "Could not fetch tasks");
   }
-
   return data;
 };
 
 export const patchTask = async (taskID) => {
-  const response = await fetch(`${API_KEY}/task/${taskID}/complete`, {
+  const response = await fetch(`${API_KEY}/tasks/${taskID}/complete`, {
     method: "PATCH",
     body: JSON.stringify(taskID),
     headers: {

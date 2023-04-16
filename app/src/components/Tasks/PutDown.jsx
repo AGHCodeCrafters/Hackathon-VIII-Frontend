@@ -12,7 +12,7 @@ const PutDown = () => {
   return (
     <article className="h-auto w-[100%] mt-[20px] pl-[10px] pt-[20px] pb-[20px] flex flex-col border-l-8 border-blue_500 bg-cards_background rounded-md">
       <p className="text-[24px] text-gray_300 font-medium">{`${
-        tasksData[currentTaskIndex].type === "odbierz" ? "Odłóż" : "Odbierz"
+        tasksData[currentTaskIndex].type === "get" ? "Odłóż" : "Odbierz"
       }`}</p>
       <ul className="pl-[20px] pt-[10px] gap-[5px] flex flex-col ">
         <li className="flex items-center">
@@ -22,7 +22,7 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Kod:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].code
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].item_id
             }`}</span>
           </p>
         </li>
@@ -33,7 +33,9 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Alejka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].aisle
+              currentTaskIndex < 0
+                ? ""
+                : tasksData[currentTaskIndex].destination_location[0]
             }`}</span>
           </p>
         </li>
@@ -44,7 +46,9 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Półka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].shelf
+              currentTaskIndex < 0
+                ? ""
+                : tasksData[currentTaskIndex].destination_location[2]
             } `}</span>
           </p>
         </li>

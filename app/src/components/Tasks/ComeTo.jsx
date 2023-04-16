@@ -20,7 +20,9 @@ const ComeTo = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Alejka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].aisle
+              currentTaskIndex < 0
+                ? ""
+                : tasksData[currentTaskIndex].destination_location[0]
             }`}</span>
           </p>
         </li>
@@ -31,7 +33,9 @@ const ComeTo = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Półka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].shelf
+              currentTaskIndex < 0
+                ? ""
+                : tasksData[currentTaskIndex].destination_location[2]
             }`}</span>
           </p>
         </li>

@@ -20,7 +20,7 @@ const PickUp = (props) => {
               />
               <p className="text-[18px] ml-[10px] text-gray_500 ">
                 Kod:
-                <span className="font-bold">{` ${item.code}`}</span>
+                <span className="font-bold">{` ${item.item_id}`}</span>
               </p>
             </li>
           ))}
