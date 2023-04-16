@@ -4,6 +4,10 @@ import Menu from "../components/Menu";
 const Map = (props) => {
   const canvasRef = useRef(null);
 
+  const CANVAS = useRef(null);
+  const CTX = useRef(null);
+  const MID = useRef(null);
+
   //Colors
   const CIRCLE_COLOR = "green";
   const LINE_COLOR = "black";
@@ -25,7 +29,7 @@ const Map = (props) => {
   const LINE_WIDTH = 2;
 
   // Function that generates map on canvas using funcions above
-  function define_coords(section, position, CANVAS) {
+  function define_coords(section, position) {
     if (position < 1 || position > 10) {
       console.error("Bad data");
       return false;
@@ -38,16 +42,16 @@ const Map = (props) => {
     if (section_code >= 65 && section_code <= 67) {
       x = LINE_WIDTH;
       y =
-        CANVAS.height -
+        CANVAS.current.height -
         PADDING -
         START_FIELD -
         SHELF.height -
         section_height * (section_code - 65) -
         LINE_WIDTH * 5 * (section_code - 65);
     } else if (section_code >= 68 && section_code <= 70) {
-      x = CANVAS.width - SHELF.width * 5;
+      x = CANVAS.current.width - SHELF.width * 5;
       y =
-        CANVAS.height -
+        CANVAS.current.height -
         PADDING -
         START_FIELD -
         SHELF.height -
@@ -69,24 +73,24 @@ const Map = (props) => {
   }
 
   // Function that draws actual position of the user
-  function draw_actual_position(x, y, MID, CANVAS, CTX) {
+  function draw_actual_position(x, y) {
     if (!x && !y) {
-      x = MID;
-      y = CANVAS.height - CIRCLE_RADIUS - PADDING;
+      x = MID.current;
+      y = CANVAS.current.height - CIRCLE_RADIUS - PADDING;
     } else {
       let result = define_coords(x, y > 5 ? y - 5 : y);
       x = result[0] + SHELF.width / 2;
       y = result[1] - HALL.height / 2 - LINE_WIDTH;
     }
 
-    CTX.beginPath();
-    CTX.arc(x, y, CIRCLE_RADIUS, 0, 2 * Math.PI);
-    CTX.fillStyle = CIRCLE_COLOR;
-    CTX.fill();
+    CTX.current.beginPath();
+    CTX.current.arc(x, y, CIRCLE_RADIUS, 0, 2 * Math.PI);
+    CTX.current.fillStyle = CIRCLE_COLOR;
+    CTX.current.fill();
   }
 
   // Function that marks shelfs that user is heading to
-  function mark_shelf(section, position, CTX) {
+  function mark_shelf(section, position) {
     if (position < 1 || position > 10) {
       console.error("Bad data");
       return false;
@@ -96,120 +100,121 @@ const Map = (props) => {
     let x = result[0];
     let y = result[1];
 
-    CTX.fillStyle = NAVIGATE_COLOR;
-    CTX.fillRect(x, y, SHELF.width - LINE_WIDTH, SHELF.height);
+    CTX.current.fillStyle = NAVIGATE_COLOR;
+    CTX.current.fillRect(x, y, SHELF.width - LINE_WIDTH, SHELF.height);
   }
 
   // Function to setup initual values of CTX
-  function setup_path(CTX) {
-    CTX.beginPath();
-    CTX.lineWidth = LINE_WIDTH;
-    CTX.strokeStyle = LINE_COLOR;
+  function setup_path() {
+    CTX.current.beginPath();
+    CTX.current.lineWidth = LINE_WIDTH;
+    CTX.current.strokeStyle = LINE_COLOR;
   }
 
   // Function that draws shelfs on canvas
-  function draw_shelfs(a, b, CTX, CANVAS, MID) {
+  function draw_shelfs(a, b) {
     for (let i = a; i < b; i++) {
       // Draw left side
-      CTX.moveTo(
-        MID - HALL.width / 2,
-        CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+      CTX.current.moveTo(
+        MID.current - HALL.width / 2,
+        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
       );
-      CTX.lineTo(
+      CTX.current.lineTo(
         LINE_WIDTH,
-        CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
       );
-      CTX.lineTo(
+      CTX.current.lineTo(
         LINE_WIDTH,
-        CANVAS.height - PADDING - START_FIELD - HALL.height * i
+        CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
       );
       for (let j = 1; j <= 5; j++) {
-        CTX.lineTo(
+        CTX.current.lineTo(
           j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - HALL.height * i
+          CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
         );
-        CTX.lineTo(
+        CTX.current.lineTo(
           j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+          CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
         );
-        CTX.moveTo(
+        CTX.current.moveTo(
           j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - HALL.height * i
+          CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
         );
       }
 
       // Draw right side
-      CTX.moveTo(
-        MID + HALL.width / 2,
-        CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+      CTX.current.moveTo(
+        MID.current + HALL.width / 2,
+        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
       );
-      CTX.lineTo(
-        CANVAS.width - LINE_WIDTH,
-        CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+      CTX.current.lineTo(
+        CANVAS.current.width - LINE_WIDTH,
+        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
       );
-      CTX.lineTo(
-        CANVAS.width - LINE_WIDTH,
-        CANVAS.height - PADDING - START_FIELD - HALL.height * i
+      CTX.current.lineTo(
+        CANVAS.current.width - LINE_WIDTH,
+        CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
       );
       for (let j = 1; j <= 5; j++) {
-        CTX.lineTo(
-          CANVAS.width - j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - HALL.height * i
+        CTX.current.lineTo(
+          CANVAS.current.width - j * SHELF.height,
+          CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
         );
-        CTX.lineTo(
-          CANVAS.width - j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CTX.current.lineTo(
+          CANVAS.current.width - j * SHELF.height,
+          CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
         );
-        CTX.moveTo(
-          CANVAS.width - j * SHELF.height,
-          CANVAS.height - PADDING - START_FIELD - HALL.height * i
+        CTX.current.moveTo(
+          CANVAS.current.width - j * SHELF.height,
+          CANVAS.current.height - PADDING - START_FIELD - HALL.height * i
         );
       }
     }
   }
 
-  const generate_map = (CANVAS, CTX, MID) => {
+  const generate_map = () => {
     // Draw first row
-    setup_path(CTX);
+    setup_path();
 
     // Draw left side
-    draw_shelfs(0, 1, CTX, CANVAS, MID);
+    draw_shelfs(0, 1);
 
-    CTX.stroke();
+    CTX.current.stroke();
 
     // Draw row 2 and 3
-    setup_path(CTX);
+    setup_path();
 
-    draw_shelfs(2, 4, CTX, CANVAS, MID);
+    draw_shelfs(2, 4);
 
-    CTX.stroke();
+    CTX.current.stroke();
 
     // Draw row 4 and 5
-    setup_path(CTX);
+    setup_path();
 
-    draw_shelfs(5, 7, CTX, CANVAS, MID);
+    draw_shelfs(5, 7);
 
-    CTX.stroke();
+    CTX.current.stroke();
 
     // Draw row 6
     setup_path();
 
-    draw_shelfs(8, 9, CTX, CANVAS, MID);
+    draw_shelfs(8, 9);
 
-    CTX.stroke();
-    generate_map();
+    CTX.current.stroke();
   };
 
   useEffect(() => {
-    const CANVAS = canvasRef.current;
-    const CTX = CANVAS.getContext("2d");
-    const MID = CANVAS.width / 2;
-    generate_map(CANVAS, CTX, MID);
-  }, [generate_map]);
+    CANVAS.current = canvasRef.current;
+    CTX.current = CANVAS.current.getContext("2d");
+    MID.current = CANVAS.current.width / 2;
+    generate_map();
+    draw_actual_position(0, 0);
+    mark_shelf("A", 5);
+  }, []);
 
   return (
     <main className="h-[90vh] bg-background flex flex-col px-[20px]">
-      <canvas ref={canvasRef} width="520" height="520" />
+      <canvas ref={canvasRef} width="520" height="520" {...props} />
       <Menu />
     </main>
   );
