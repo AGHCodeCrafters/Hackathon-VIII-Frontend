@@ -6,15 +6,7 @@ import { useTasks } from "../../store/tasks-context";
 
 const ProgressCard = () => {
   const {
-    tasksData,
-    activeTaskType,
-    tasksIteration,
-    onTaskIteration,
-    completedTasks,
-    currentTaskIndex,
-    onTaskIndex,
-    onFetchTasks,
-    onActiveTaskType,
+    completedTasks
   } = useTasks();
 
   let today = new Date();
