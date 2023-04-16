@@ -98,7 +98,7 @@ export const TasksContextProvider = (props) => {
   const [tasksData, setTasksData] = useState(null);
   const [activeTaskType, setActiveTaskType] = useState("punktOdbioru");
   const [tasksIteration, setTasksIteration] = useState(1);
-  const [currentTaskIndex, setCurrentTaskIndex] = useState(1);
+  const [currentTaskIndex, setCurrentTaskIndex] = useState(-1);
   const [completedTasks, setCompletedTasks] = useState(0);
 
   const fetchTasksHandler = (data) => {

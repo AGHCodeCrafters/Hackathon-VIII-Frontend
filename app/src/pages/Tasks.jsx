@@ -60,12 +60,17 @@ const Tasks = () => {
         onActiveTaskType("idźDo");
         if (currentTaskIndex != tasksData.length - 1) {
           onTaskIndex((prev) => prev + 1);
-          if (currentTaskIndex > 1) {
-            console.log(currentTaskIndex);
+          if (currentTaskIndex >= 0) {
+            console.log(currentTaskIndex)
             //sendRequestForPatch(tasksData[currentTaskIndex].id);
             onCompletedTasks();
           }
-        } else {
+        }
+         else {
+          onTaskIndex((prev) => prev + 1);
+          console.log(currentTaskIndex)
+          //sendRequestForPatch(tasksData[currentTaskIndex].id);
+          onCompletedTasks();
           onActiveTaskType("punktOdbioru");
           onFetchTasks([]);
         }
