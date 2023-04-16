@@ -1,8 +1,11 @@
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import useHttp from "../hooks/useHttp";
+import { getTasks, patchTask, getUser } from "../lib/api";
 
 const Topbar = () => {
   const userName = "Bartek";
   const tasksAmount = 4;
+
   return (
     <header className="h-[80px] md:h-[100px] px-[20px] flex items-center justify-between bg-background">
       <div>
