@@ -18,13 +18,13 @@ const Menu = () => {
   return (
     <nav className="mb-[20px] mt-auto flex flex-col">
       <h3 className="mb-[20px] text-[18px] text-center text-gray_500 font-semibold">
-        {location.pathname === "/homepage"
-          ? "Strona główna"
+        {location.pathname === "/problems"
+          ? "Problemy"
           : location.pathname === "/tasks"
             ? "Zadania"
             : location.pathname === "/summary"
               ? "Podsumowanie"
-              : "Problemy"}
+              : "Mapa"}
       </h3>
       <ul className="h-[60px] md:h-[80px] w-[100%] flex items-center justify-evenly bg-cards_background custom-box-shadow rounded-md">
         <li>
