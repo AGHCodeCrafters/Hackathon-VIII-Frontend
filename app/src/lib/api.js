@@ -10,5 +10,24 @@ export const getTasks = async () => {
     throw new Error(data.message || "Could not fetch tasks");
   }
 
-  return response;
+  return data;
+};
+
+export const patchTask = async (taskID) => {
+  const response = await fetch(`${API_KEY}/task/${taskID}/complete`, {
+    method: "PATCH",
+    body: JSON.stringify(taskID),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+
+  console.log(data);
+
+  if (!response.ok) {
+    console.log("error");
+  }
+
+  return null;
 };

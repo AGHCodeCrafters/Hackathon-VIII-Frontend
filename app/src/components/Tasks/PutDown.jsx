@@ -22,9 +22,7 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Kod:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 && currentTaskIndex > tasksData.length - 1
-                ? tasksData[currentTaskIndex].code
-                : ""
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].code
             }`}</span>
           </p>
         </li>
@@ -35,9 +33,7 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Alejka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 && currentTaskIndex > tasksData.length - 1
-                ? tasksData[currentTaskIndex].aisle
-                : ""
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].aisle
             }`}</span>
           </p>
         </li>
@@ -48,9 +44,7 @@ const PutDown = () => {
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Półka:
             <span className="font-bold">{` ${
-              currentTaskIndex < 0 && currentTaskIndex > tasksData.length - 1
-                ? tasksData[currentTaskIndex].shelf
-                : ""
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].shelf
             } `}</span>
           </p>
         </li>

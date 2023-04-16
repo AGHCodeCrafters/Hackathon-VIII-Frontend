@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useHttp from "../hooks/useHttp";
 import { useTasks } from "../store/tasks-context";
-import { getTasks } from "../lib/api";
+import { getTasks, patchTask } from "../lib/api";
 import { useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
 import CollectionPoint from "../components/Tasks/CollectionPoint";
@@ -16,6 +16,8 @@ const Tasks = () => {
     data: loadedTasks,
     status,
   } = useHttp(getTasks);
+
+  // const { sendRequest: sendRequestForPatch } = useHttp(patchTask);
 
   const {
     tasksData,
@@ -33,8 +35,8 @@ const Tasks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // sendRequestForFetch();
-    // console.log(loadedTasks);
+    sendRequestForFetch();
+    console.log(loadedTasks);
   }, []);
 
   const tasksFlowHandler = () => {
@@ -59,7 +61,12 @@ const Tasks = () => {
         onActiveTaskType("punktOdbioru");
         onFetchTasks([]);
       }
-      console.log(tasksData);
+      // console.log(
+      //   currentTaskIndex >= 0 ? tasksData[currentTaskIndex].taskID : ""
+      // );
+      // if (currentTaskIndex >= 0) {
+      //   sendRequestForPatch(tasksData[currentTaskIndex].taskID);
+      // }
     }
 
     if (activeTaskType === "idźDo") {
