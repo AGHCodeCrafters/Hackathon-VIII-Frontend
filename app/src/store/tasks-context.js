@@ -7,14 +7,14 @@ export const useTasks = () => {
 };
 
 const DUMMY_DATA = [
-  { taskID: "1", code: "123", aisle: "A", shelf: "1", type: "odbierzTir" },
-  { taskID: "2", code: "345", aisle: "B", shelf: "2", type: "odbierzTir" },
-  { taskID: "3", code: "678", aisle: "C", shelf: "3", type: "odbierzTir" },
+  { taskID: "1", code: "123", aisle: "A", shelf: "1", type: "odbierz" },
+  { taskID: "2", code: "345", aisle: "B", shelf: "2", type: "odbierz" },
+  { taskID: "3", code: "678", aisle: "C", shelf: "3", type: "odbierz" },
   { taskID: "4", code: "910", aisle: "D", shelf: "4", type: "odbierz" },
-  { taskID: "4", code: "111", aisle: "A", shelf: "5", type: "zanieś" },
-  { taskID: "5", code: "131", aisle: "B", shelf: "6", type: "zanieś" },
-  { taskID: "6", code: "151", aisle: "C", shelf: "7", type: "zanieś" },
-  { taskID: "7", code: "171", aisle: "D", shelf: "8", type: "zanieś" },
+  { taskID: "4", code: "111", aisle: "A", shelf: "5", type: "odłóż" },
+  { taskID: "5", code: "131", aisle: "B", shelf: "6", type: "odłóż" },
+  { taskID: "6", code: "151", aisle: "C", shelf: "7", type: "odłóż" },
+  { taskID: "7", code: "171", aisle: "D", shelf: "8", type: "odłóż" },
 ];
 
 DUMMY_DATA.sort((a, b) => {
@@ -29,13 +29,11 @@ DUMMY_DATA.sort((a, b) => {
   return 0; // elementy są równe
 });
 
-console.log(DUMMY_DATA);
-
 export const TasksContextProvider = (props) => {
-  const [tasksData, setTasksData] = useState([DUMMY_DATA]);
+  const [tasksData, setTasksData] = useState(DUMMY_DATA);
   const [activeTaskType, setActiveTaskType] = useState("punktOdbioru");
   const [tasksIteration, setTasksIteration] = useState(1);
-  const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
+  const [currentTaskIndex, setCurrentTaskIndex] = useState(-1);
 
   const fetchTasksHandler = (data) => {
     setTasksData(data);
@@ -51,8 +49,6 @@ export const TasksContextProvider = (props) => {
   const tasksIndexHandler = () => {
     setCurrentTaskIndex((prev) => prev + 1);
   };
-
-  console.log(activeTaskType, tasksIteration);
 
   const value = {
     tasksData,

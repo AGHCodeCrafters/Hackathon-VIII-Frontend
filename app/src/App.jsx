@@ -3,8 +3,8 @@ import RootLayout from "./pages/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Tasks from "./pages/Tasks";
 import Homepage from "./pages/Homepage";
-import Settings from "./pages/Settings";
 import Problems from "./pages/Problems";
+import Summary from "./pages/Summary";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +15,8 @@ function App() {
       children: [
         { path: "homepage", element: <Homepage /> },
         { path: "tasks", element: <Tasks /> },
-        { path: "settings", element: <Settings /> },
         { path: "problems", element: <Problems /> },
+        { path: "summary", element: <Summary /> },
       ],
     },
   ]);

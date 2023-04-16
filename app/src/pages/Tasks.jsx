@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useHttp from "../hooks/useHttp";
 import { useTasks } from "../store/tasks-context";
 import { getTasks } from "../lib/api";
+import { useNavigate } from "react-router-dom";
 import Menu from "../components/Menu";
 import CollectionPoint from "../components/Tasks/CollectionPoint";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
@@ -21,33 +22,67 @@ const Tasks = () => {
     activeTaskType,
     tasksIteration,
     onTaskIteration,
+    currentTaskIndex,
+    onTaskIndex,
     onFetchTasks,
     onActiveTaskType,
   } = useTasks();
 
-  const [currentTasks, setCurrentTasks] = useState([]);
+  const [currentTasks, setCurrentTasks] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // sendRequestForFetch();
+    // console.log(loadedTasks);
   }, []);
 
   const tasksFlowHandler = () => {
-    if (activeTaskType == "punktOdbioru") {
+    if (currentTaskIndex > tasksData.length) {
+      navigate("/summary");
+      return;
+    }
+    if (activeTaskType === "punktOdbioru") {
       onTaskIteration();
-      onActiveTaskType("odbierzTir");
+      onActiveTaskType("odbierz");
+      let truckItems = [];
+      truckItems = tasksData.filter((obj) => obj.type === "odbierz");
+      setCurrentTasks(truckItems);
     }
 
-    console.log(activeTaskType, tasksIteration);
+    if (tasksIteration % 2 === 0 && activeTaskType !== "punktOdbioru") {
+      onTaskIteration();
+      onActiveTaskType("idźDo");
+      if (currentTaskIndex != tasksData.length - 1) {
+        onTaskIndex((prev) => prev + 1);
+      } else {
+        onActiveTaskType("punktOdbioru");
+        onFetchTasks([]);
+      }
+      console.log(tasksData);
+    }
+
+    if (activeTaskType === "idźDo") {
+      onTaskIteration();
+      onActiveTaskType("odłóż");
+    }
   };
+
+  console.log(
+    `active type ${activeTaskType} task iteration ${tasksIteration} currentIndex ${currentTaskIndex}`
+  );
 
   return (
     <main className="h-[90vh] bg-background flex flex-col px-[20px] overflow-y-auto overflow-x scroll">
       <h2 className="text-[30px] text-gray_300 font-bold">Twoje zadanie:</h2>
       {activeTaskType === "punktOdbioru" ? (
         <CollectionPoint />
-      ) : activeTaskType === ("odbierz" || "odbierzTir") ? (
-        <PickUp />
-      ) : activeTaskType === "zanieś" ? (
+      ) : activeTaskType === "odbierz" ? (
+        <PickUp
+          data={tasksData[currentTaskIndex]}
+          entryData={currentTasks === undefined ? [] : currentTasks}
+        />
+      ) : activeTaskType === "odłóż" ? (
         <PutDown />
       ) : (
         <ComeTo />

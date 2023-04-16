@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import BarChartIcon from "@mui/icons-material/BarChart";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 
 const Menu = () => {
@@ -21,8 +21,8 @@ const Menu = () => {
           ? "Strona główna"
           : location.pathname === "/tasks"
           ? "Zadania"
-          : location.pathname === "/settings"
-          ? "Ustawienia"
+          : location.pathname === "/summary"
+          ? "Podsumowanie"
           : "Problemy"}
       </h3>
       <ul className="h-[60px] md:h-[80px] w-[100%] flex items-center justify-evenly bg-cards_background custom-box-shadow rounded-md">
@@ -58,14 +58,14 @@ const Menu = () => {
         </li>
         <li>
           <NavLink
-            to="/settings"
+            to="/summary"
             className={({ isActive }) =>
               isActive ? activeLinkStyles : linkStyles
             }
           >
-            <SettingsOutlinedIcon
+            <BarChartIcon
               style={
-                location.pathname === "/settings"
+                location.pathname === "/summary"
                   ? activeIconStyles
                   : iconsStyles
               }

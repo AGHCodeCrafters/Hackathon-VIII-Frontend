@@ -1,4 +1,4 @@
-const API_KEY = "https://magazyn.onrender.com";
+const API_KEY = "http://192.168.97.27:8000";
 
 export const getTasks = async () => {
   const response = await fetch(`${API_KEY}/tasks`);

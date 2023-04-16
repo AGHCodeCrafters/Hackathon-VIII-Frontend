@@ -1,16 +1,12 @@
+import { useTasks } from "../../store/tasks-context";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import ArrowRightAltOutlinedIcon from "@mui/icons-material/ArrowRightAltOutlined";
 
 const ComeTo = () => {
-  const data = [
-    { code: "123", aisle: "A", shelf: "4" },
-    {
-      besosAmount: 0,
-      duration: "dobry",
-    },
-  ];
+  const { tasksData, currentTaskIndex } = useTasks();
+
   const iconStyle = { fontSize: "30px", color: "#6B7891" };
 
   return (
@@ -23,7 +19,9 @@ const ComeTo = () => {
           />
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Alejka:
-            <span className="font-bold">{` ${data[0].aisle}`}</span>
+            <span className="font-bold">{` ${
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].aisle
+            }`}</span>
           </p>
         </li>
         <li className="flex items-center">
@@ -32,7 +30,9 @@ const ComeTo = () => {
           />
           <p className="text-[18px] ml-[10px] text-gray_500 ">
             Półka:
-            <span className="font-bold">{` ${data[0].shelf}`}</span>
+            <span className="font-bold">{` ${
+              currentTaskIndex < 0 ? "" : tasksData[currentTaskIndex].shelf
+            }`}</span>
           </p>
         </li>
       </ul>
@@ -40,14 +40,14 @@ const ComeTo = () => {
         <EmojiEventsOutlinedIcon style={iconStyle} />
         <p className="text-[18px] ml-[10px] text-gray_500 ">
           Wartość:
-          <span className="font-bold">{` ${data[1].besosAmount}B`}</span>
+          <span className="font-bold">{`3B`}</span>
         </p>
       </div>
       <div className="pl-[10px] pt-[10px] flex items-center">
         <AccessTimeOutlinedIcon style={iconStyle} />
         <p className="text-[18px] ml-[10px] text-gray_500 ">
           Czas:
-          <span className="font-bold">{` ${data[1].duration}`}</span>
+          <span className="font-bold">{` szybko`}</span>
         </p>
       </div>
     </article>
