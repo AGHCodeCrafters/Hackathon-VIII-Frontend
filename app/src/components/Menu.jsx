@@ -21,10 +21,10 @@ const Menu = () => {
         {location.pathname === "/homepage"
           ? "Strona główna"
           : location.pathname === "/tasks"
-          ? "Zadania"
-          : location.pathname === "/summary"
-          ? "Podsumowanie"
-          : "Problemy"}
+            ? "Zadania"
+            : location.pathname === "/summary"
+              ? "Podsumowanie"
+              : "Problemy"}
       </h3>
       <ul className="h-[60px] md:h-[80px] w-[100%] flex items-center justify-evenly bg-cards_background custom-box-shadow rounded-md">
         <li>
