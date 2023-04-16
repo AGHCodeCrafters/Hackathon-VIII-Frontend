@@ -214,7 +214,9 @@ const Map = (props) => {
 
   return (
     <main className="h-[90vh] bg-background flex flex-col px-[20px]">
+      <p className="py-[10px] text-[18px] text-gray_300 font-semibold">Mapa magazynu:</p>
       <canvas ref={canvasRef} width="520" height="520" {...props} />
+
       <Menu />
     </main>
   );
