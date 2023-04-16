@@ -5,15 +5,7 @@ import Menu from "../components/Menu";
 const Map = (props) => {
   const {
     tasksData,
-    activeTaskType,
-    tasksIteration,
-    onTaskIteration,
-    currentTaskIndex,
-    completedTasks,
-    onCompletedTasks,
-    onTaskIndex,
-    onFetchTasks,
-    onActiveTaskType,
+    currentTaskIndex
   } = useTasks();
 
   const canvasRef = useRef(null);
@@ -132,18 +124,18 @@ const Map = (props) => {
       CTX.current.moveTo(
         MID.current - HALL.width / 2,
         CANVAS.current.height -
-          PADDING -
-          START_FIELD -
-          SHELF.height -
-          HALL.height * i
+        PADDING -
+        START_FIELD -
+        SHELF.height -
+        HALL.height * i
       );
       CTX.current.lineTo(
         LINE_WIDTH,
         CANVAS.current.height -
-          PADDING -
-          START_FIELD -
-          SHELF.height -
-          HALL.height * i
+        PADDING -
+        START_FIELD -
+        SHELF.height -
+        HALL.height * i
       );
       CTX.current.lineTo(
         LINE_WIDTH,
@@ -157,10 +149,10 @@ const Map = (props) => {
         CTX.current.lineTo(
           j * SHELF.height,
           CANVAS.current.height -
-            PADDING -
-            START_FIELD -
-            SHELF.height -
-            HALL.height * i
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
         );
         CTX.current.moveTo(
           j * SHELF.height,
@@ -172,18 +164,18 @@ const Map = (props) => {
       CTX.current.moveTo(
         MID.current + HALL.width / 2,
         CANVAS.current.height -
-          PADDING -
-          START_FIELD -
-          SHELF.height -
-          HALL.height * i
+        PADDING -
+        START_FIELD -
+        SHELF.height -
+        HALL.height * i
       );
       CTX.current.lineTo(
         CANVAS.current.width - LINE_WIDTH,
         CANVAS.current.height -
-          PADDING -
-          START_FIELD -
-          SHELF.height -
-          HALL.height * i
+        PADDING -
+        START_FIELD -
+        SHELF.height -
+        HALL.height * i
       );
       CTX.current.lineTo(
         CANVAS.current.width - LINE_WIDTH,
@@ -197,10 +189,10 @@ const Map = (props) => {
         CTX.current.lineTo(
           CANVAS.current.width - j * SHELF.height,
           CANVAS.current.height -
-            PADDING -
-            START_FIELD -
-            SHELF.height -
-            HALL.height * i
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
         );
         CTX.current.moveTo(
           CANVAS.current.width - j * SHELF.height,
@@ -246,17 +238,22 @@ const Map = (props) => {
     CTX.current = CANVAS.current.getContext("2d");
     MID.current = CANVAS.current.width / 2;
     generate_map();
-    // let currentShelf =
-    //   tasksData[currentTaskIndex].destination_location.split("-");
-    // let currentPosition;
-    // if (currentTaskIndex - 1 == 0) {
-    //   currentPosition =
-    //     tasksData[currentTaskIndex - 1].destination_location.split("-");
-    // } else {
-    //   currentPosition = [0, 0];
-    // }
-    // draw_actual_position(currentPosition[0], currentPosition[1]);
-    // mark_shelf(currentShelf[0], currentShelf[1]);
+    console.log(currentTaskIndex);
+    if (!tasksData || currentTaskIndex < 0 || currentTaskIndex > 9) {
+      draw_actual_position(0, 0);
+    } else {
+      let currentShelf =
+        tasksData[currentTaskIndex].destination_location.split("-");
+      if (currentTaskIndex) {
+        let currentPosition =
+          tasksData[currentTaskIndex - 1].destination_location.split("-");
+        draw_actual_position(currentPosition[0], currentPosition[1]);
+        mark_shelf(currentShelf[0], currentShelf[1]);
+      } else {
+        draw_actual_position(0, 0);
+      }
+      mark_shelf(currentShelf[0], currentShelf[1]);
+    }
   }, []);
 
   return (
