@@ -57,7 +57,7 @@ const PutDown = () => {
         <EmojiEventsOutlinedIcon style={iconStyle} />
         <p className="text-[18px] ml-[10px] text-gray_500 ">
           Wartość:
-          <span className="font-bold">{` 3B`}</span>
+          <span className="font-bold">{` ${tasksData[currentTaskIndex].bezoski_value}B`}</span>
         </p>
       </div>
       <div className="pl-[10px] pt-[10px] flex items-center">
