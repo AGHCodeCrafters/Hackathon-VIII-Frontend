@@ -1,7 +1,21 @@
 import { useEffect, useRef } from "react";
+import { useTasks } from "../store/tasks-context";
 import Menu from "../components/Menu";
 
 const Map = (props) => {
+  const {
+    tasksData,
+    activeTaskType,
+    tasksIteration,
+    onTaskIteration,
+    currentTaskIndex,
+    completedTasks,
+    onCompletedTasks,
+    onTaskIndex,
+    onFetchTasks,
+    onActiveTaskType,
+  } = useTasks();
+
   const canvasRef = useRef(null);
 
   const CANVAS = useRef(null);
@@ -9,9 +23,9 @@ const Map = (props) => {
   const MID = useRef(null);
 
   //Colors
-  const CIRCLE_COLOR = "green";
+  const CIRCLE_COLOR = "#6B7891";
   const LINE_COLOR = "black";
-  const NAVIGATE_COLOR = "red";
+  const NAVIGATE_COLOR = "#39ACFE";
 
   // Dimensions
   const CIRCLE_RADIUS = 10;
@@ -117,11 +131,19 @@ const Map = (props) => {
       // Draw left side
       CTX.current.moveTo(
         MID.current - HALL.width / 2,
-        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CANVAS.current.height -
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
       );
       CTX.current.lineTo(
         LINE_WIDTH,
-        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CANVAS.current.height -
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
       );
       CTX.current.lineTo(
         LINE_WIDTH,
@@ -134,7 +156,11 @@ const Map = (props) => {
         );
         CTX.current.lineTo(
           j * SHELF.height,
-          CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+          CANVAS.current.height -
+            PADDING -
+            START_FIELD -
+            SHELF.height -
+            HALL.height * i
         );
         CTX.current.moveTo(
           j * SHELF.height,
@@ -145,11 +171,19 @@ const Map = (props) => {
       // Draw right side
       CTX.current.moveTo(
         MID.current + HALL.width / 2,
-        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CANVAS.current.height -
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
       );
       CTX.current.lineTo(
         CANVAS.current.width - LINE_WIDTH,
-        CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+        CANVAS.current.height -
+          PADDING -
+          START_FIELD -
+          SHELF.height -
+          HALL.height * i
       );
       CTX.current.lineTo(
         CANVAS.current.width - LINE_WIDTH,
@@ -162,7 +196,11 @@ const Map = (props) => {
         );
         CTX.current.lineTo(
           CANVAS.current.width - j * SHELF.height,
-          CANVAS.current.height - PADDING - START_FIELD - SHELF.height - HALL.height * i
+          CANVAS.current.height -
+            PADDING -
+            START_FIELD -
+            SHELF.height -
+            HALL.height * i
         );
         CTX.current.moveTo(
           CANVAS.current.width - j * SHELF.height,
@@ -208,14 +246,31 @@ const Map = (props) => {
     CTX.current = CANVAS.current.getContext("2d");
     MID.current = CANVAS.current.width / 2;
     generate_map();
-    draw_actual_position(0, 0);
-    mark_shelf("A", 5);
+    // let currentShelf =
+    //   tasksData[currentTaskIndex].destination_location.split("-");
+    // let currentPosition;
+    // if (currentTaskIndex - 1 == 0) {
+    //   currentPosition =
+    //     tasksData[currentTaskIndex - 1].destination_location.split("-");
+    // } else {
+    //   currentPosition = [0, 0];
+    // }
+    // draw_actual_position(currentPosition[0], currentPosition[1]);
+    // mark_shelf(currentShelf[0], currentShelf[1]);
   }, []);
 
   return (
     <main className="h-[90vh] bg-background flex flex-col px-[20px]">
-      <p className="py-[10px] text-[18px] text-gray_300 font-semibold">Mapa magazynu:</p>
-      <canvas ref={canvasRef} width="520" height="520" {...props} />
+      <p className="py-[10px] text-[18px] text-gray_300 font-semibold">
+        Mapa magazynu:
+      </p>
+      <canvas
+        className="mt-[10px] p-[10px] justify-center bg-cards_background  custom-box-shadow rounded-md"
+        ref={canvasRef}
+        width="520"
+        height="520"
+        {...props}
+      />
 
       <Menu />
     </main>
