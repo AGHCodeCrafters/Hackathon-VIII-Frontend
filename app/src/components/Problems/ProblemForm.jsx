@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 
 const ProblemForm = () => {
@@ -6,6 +7,9 @@ const ProblemForm = () => {
   const [pierwszy, setPierwszy] = useState("");
   const [drugi, setDrugi] = useState("");
   const [trzeci, setTrzeci] = useState("");
+
+  const navigate = useNavigate();
+
   const pierwszyHandler = (e) => {
     setPierwszy(e.target.value);
   };
@@ -22,6 +26,11 @@ const ProblemForm = () => {
     if (drugi == " ") return;
     if (trzeci == " ") return;
     setShowMessage(true);
+
+    setTimeout(() => {
+      navigate("/summary");
+    }, [2000]);
+
     setPierwszy("");
     setDrugi("");
     setTrzeci("");
@@ -49,13 +58,6 @@ const ProblemForm = () => {
           onChange={drugiHandler}
           className="w-[100%] p-[10px] mt-[20px] text-[16px] font-medium text-gray_300 focus:outline-none placeholder-gray_500  custom-box-shadow rounded-md"
           placeholder="Jak często napotykasz problem..."
-        ></input>
-        <label className="text-[18px] mt-[20px] text-gray_300 font-medium">
-          Przyczyna występowania problemu
-        </label>
-        <input
-          className="w-[100%] p-[10px] mt-[20px] text-[16px] font-medium text-gray_300 focus:outline-none placeholder-gray_500  custom-box-shadow rounded-md"
-          placeholder="Jak sądzisz, dlaczego występuje "
         ></input>
         <button
           value={trzeci}
