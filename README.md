@@ -11,11 +11,6 @@ Oferuje ono szereg funkcjonalności, takich jak optymalne zarządzanie czasem pr
 <br><br>
 Program ocenia także efektywność czasową pracowników i nagradza ich punktami za dobre wyniki, które mogą być wymienione na nagrody wybrane przez pracodawcę.
 
-## Jak odpalić Otpimę?:
-1. Sklonuj repozytorium używając komendy `git clone https://github.com/AGHCodeCrafters/Hackathon-VIII-Frontend.git`.
-<resztę zostawiam wam, drodzy koledzy>
-
-
 ## Galeria 
 
 ### Figma: https://tinyurl.com/bhl-figma
