@@ -21,23 +21,21 @@ const Menu = () => {
         {location.pathname === "/problems"
           ? "Problemy"
           : location.pathname === "/tasks"
-            ? "Zadania"
-            : location.pathname === "/summary"
-              ? "Podsumowanie"
-              : "Mapa"}
+          ? "Zadania"
+          : location.pathname === "/summary"
+          ? "Podsumowanie"
+          : "Mapa"}
       </h3>
       <ul className="h-[60px] md:h-[80px] w-[100%] flex items-center justify-evenly bg-cards_background custom-box-shadow rounded-md">
         <li>
           <NavLink
-            to="/tasks"
+            to="/"
             className={({ isActive }) =>
               isActive ? activeLinkStyles : linkStyles
             }
           >
             <FormatListBulletedOutlinedIcon
-              style={
-                location.pathname === "/tasks" ? activeIconStyles : iconsStyles
-              }
+              style={location.pathname === "/" ? activeIconStyles : iconsStyles}
             />
           </NavLink>
         </li>

@@ -13,7 +13,7 @@ function App() {
       element: <RootLayout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "tasks", element: <Tasks /> },
+        { index: true, element: <Tasks /> },
         { path: "map", element: <Map /> },
         { path: "problems", element: <Problems /> },
         { path: "summary", element: <Summary /> },
