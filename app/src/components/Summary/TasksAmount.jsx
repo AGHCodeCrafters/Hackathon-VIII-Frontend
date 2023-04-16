@@ -2,17 +2,7 @@ import { useState } from "react";
 import { useTasks } from "../../store/tasks-context";
 
 const TasksAmount = () => {
-  const {
-    tasksData,
-    activeTaskType,
-    tasksIteration,
-    onTaskIteration,
-    completedTasks,
-    currentTaskIndex,
-    onTaskIndex,
-    onFetchTasks,
-    onActiveTaskType,
-  } = useTasks();
+  const { completedTasks } = useTasks();
 
   return (
     <section className="flex items-center mt-[20px]  gap-[5px] justify-between">

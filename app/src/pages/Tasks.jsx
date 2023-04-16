@@ -61,15 +61,14 @@ const Tasks = () => {
         if (currentTaskIndex != tasksData.length - 1) {
           onTaskIndex((prev) => prev + 1);
           if (currentTaskIndex >= 0) {
-            console.log(currentTaskIndex)
-            //sendRequestForPatch(tasksData[currentTaskIndex].id);
+            console.log(currentTaskIndex);
+            sendRequestForPatch(tasksData[currentTaskIndex].id);
             onCompletedTasks();
           }
-        }
-         else {
+        } else {
           onTaskIndex((prev) => prev + 1);
-          console.log(currentTaskIndex)
-          //sendRequestForPatch(tasksData[currentTaskIndex].id);
+          console.log(currentTaskIndex);
+          sendRequestForPatch(tasksData[currentTaskIndex].id);
           onCompletedTasks();
           onActiveTaskType("punktOdbioru");
           onFetchTasks([]);
