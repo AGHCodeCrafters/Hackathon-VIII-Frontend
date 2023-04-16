@@ -3,6 +3,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import FormatListBulletedOutlinedIcon from "@mui/icons-material/FormatListBulletedOutlined";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Menu = () => {
   const location = useLocation();
@@ -28,22 +29,6 @@ const Menu = () => {
       <ul className="h-[60px] md:h-[80px] w-[100%] flex items-center justify-evenly bg-cards_background custom-box-shadow rounded-md">
         <li>
           <NavLink
-            to="/homepage"
-            className={({ isActive }) =>
-              isActive ? activeLinkStyles : linkStyles
-            }
-          >
-            <HomeOutlinedIcon
-              style={
-                location.pathname === "/homepage"
-                  ? activeIconStyles
-                  : iconsStyles
-              }
-            />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/tasks"
             className={({ isActive }) =>
               isActive ? activeLinkStyles : linkStyles
@@ -52,6 +37,20 @@ const Menu = () => {
             <FormatListBulletedOutlinedIcon
               style={
                 location.pathname === "/tasks" ? activeIconStyles : iconsStyles
+              }
+            />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/map"
+            className={({ isActive }) =>
+              isActive ? activeLinkStyles : linkStyles
+            }
+          >
+            <MapOutlinedIcon
+              style={
+                location.pathname === "/map" ? activeIconStyles : iconsStyles
               }
             />
           </NavLink>

@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/RootLayout";
 import ErrorPage from "./pages/ErrorPage";
 import Tasks from "./pages/Tasks";
-import Homepage from "./pages/Homepage";
+import Map from "./pages/Map";
 import Problems from "./pages/Problems";
 import Summary from "./pages/Summary";
 
@@ -13,8 +13,8 @@ function App() {
       element: <RootLayout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "homepage", element: <Homepage /> },
         { path: "tasks", element: <Tasks /> },
+        { path: "map", element: <Map /> },
         { path: "problems", element: <Problems /> },
         { path: "summary", element: <Summary /> },
       ],
