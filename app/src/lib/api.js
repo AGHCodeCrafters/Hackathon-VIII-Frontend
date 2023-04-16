@@ -28,3 +28,13 @@ export const patchTask = async (taskID) => {
 
   return null;
 };
+
+export const getUser = async () => {
+  const response = await fetch(`${API_KEY}/employees/1`);
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Could not fetch tasks");
+  }
+  return data;
+};
