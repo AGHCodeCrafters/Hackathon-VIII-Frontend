@@ -1,6 +1,6 @@
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import useHttp from "../hooks/useHttp";
-import { getTasks, patchTask, getUser } from "../lib/api";
+import useHttp from "../../hooks/useHttp";
+import { getTasks, patchTask, getUser } from "../../lib/api"
 
 const Topbar = () => {
   const userName = "Bartek";
