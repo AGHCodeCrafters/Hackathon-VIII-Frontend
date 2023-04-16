@@ -100,6 +100,7 @@ export const TasksContextProvider = (props) => {
   const [tasksIteration, setTasksIteration] = useState(1);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(-1);
   const [completedTasks, setCompletedTasks] = useState(0);
+  const [totalTime, setTotalTime] = useState(0);
 
   const fetchTasksHandler = (data) => {
     if (data !== null) {
@@ -135,17 +136,23 @@ export const TasksContextProvider = (props) => {
     setCompletedTasks((prev) => prev + 1);
   };
 
+  const totalTimeHandler = (time) => {
+    setTotalTime(prev => prev + time)
+  }
+
   const value = {
     tasksData,
     activeTaskType,
     tasksIteration,
     currentTaskIndex,
     completedTasks,
+    totalTime,
     onCompletedTasks: completedTasksHandler,
     onTaskIndex: tasksIndexHandler,
     onTaskIteration: tasksIterationHandler,
     onFetchTasks: fetchTasksHandler,
     onActiveTaskType: activeTaskTypeHandler,
+    updateTotalTime: totalTimeHandler,
   };
 
   return (

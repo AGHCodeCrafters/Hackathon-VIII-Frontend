@@ -64,7 +64,7 @@ const PutDown = () => {
         <AccessTimeOutlinedIcon style={iconStyle} />
         <p className="text-[18px] ml-[10px] text-gray_500 ">
           Czas:
-          <span className="font-bold">{` dobra`}</span>
+          <span className="font-bold">{ ` ${Math.floor(Math.random() * (10 - 2) + 2)} min`}</span>
         </p>
       </div>
     </article>
