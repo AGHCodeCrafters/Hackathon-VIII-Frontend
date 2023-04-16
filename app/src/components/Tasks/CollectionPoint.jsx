@@ -29,13 +29,7 @@ const CollectionPoint = () => {
         </p>
       </div>
       <div className="pl-[10px] pt-[10px] flex items-center">
-        <AccessTimeOutlinedIcon
-          style={{ fontSize: "30px", color: "#6B7891" }}
-        />
-        <p className="text-[18px] ml-[10px] text-gray_500 ">
-          Czas:
-          <span className="font-bold">{` ${collectionPointTask.duration}`}</span>
-        </p>
+        
       </div>
     </article>
   );

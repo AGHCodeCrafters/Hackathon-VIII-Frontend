@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import useHttp from "../../hooks/useHttp";
-import { getUser } from "../../lib/api";
+import { getTasks, patchTask, getUser } from "../../lib/api";
 import { useTasks } from "../../store/tasks-context";
+import { useEffect } from "react";
 
 const Topbar = () => {
   const {
