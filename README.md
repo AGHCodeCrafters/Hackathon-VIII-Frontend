@@ -4,19 +4,13 @@
 </p>
 
 
-# O projekcie: 📜
-Optima to narzędzie, które pozwala na skuteczne zarządzanie pracą magazynów i zwiększenie wydajności pracy pracowników.
+# Project description 📜
+Optima is a tool that allows you to effectively manage the work of warehouses and increase the efficiency of employees.
 <br><br>
-Oferuje ono szereg funkcjonalności, takich jak optymalne zarządzanie czasem pracy pracowników, dobieranie najkrótszej drogi do wykonania zadań oraz prezentacja magazynu w formie mapy. Pracownik ma możliwość zobaczenia jedynie aktualnie wykonywanego zadania, co zwiększa jego skuteczność. 
+It offers a number of functionalities, such as optimal management of employees' working time, selection of the shortest route to perform tasks and presentation of the warehouse in the form of a map. The employee has the ability to see only the currently performed task, which increases its effectiveness.
 <br><br>
-Program ocenia także efektywność czasową pracowników i nagradza ich punktami za dobre wyniki, które mogą być wymienione na nagrody wybrane przez pracodawcę.
+The program also evaluates the time efficiency of employees and rewards them with points for good performance, which can be exchanged for rewards selected by the employer.
 
 ## Galeria 
 
-### Figma: https://tinyurl.com/bhl-figma
 
-![image](https://user-images.githubusercontent.com/65948245/232280684-264544b7-df91-4ed0-a9ea-48c9a6716f5b.png)
-<div align="center"> 
-
-  Znalazłeś jakiś błąd? Będziemy wdzięczni, jeśli dasz nam o nim znać ^͜^
-</div>
